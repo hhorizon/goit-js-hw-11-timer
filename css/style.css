@@ -1,0 +1,29 @@
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 550px;
+  height: 200px;
+  margin: 50px auto;
+  background-color: rgba(46, 216, 40, 0.479);
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field:not(:last-child) {
+  margin-right: 35px;
+}
+
+.value {
+  font-size: 72px;
+}
+
+.label {
+  text-align: center;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+}
