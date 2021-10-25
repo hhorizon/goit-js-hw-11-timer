@@ -11,16 +11,25 @@ class CountdownTimer {
         const minsTimer = timer.querySelector('div.field > span[data-value="mins');
         const secsTimer = timer.querySelector('div.field > span[data-value="secs');
 
-        setInterval(() => {
-            const currentTime = Date.now();
-            const time = this.targetDate - currentTime;
-            const { days, hours, mins, secs } = this.getTimeComponents(time);
+        if (this.targetDate > Date.now()) {
+            const timerId = setInterval(() => {
+                if (this.targetDate > Date.now()) {
+                    const currentTime = Date.now();
+                    const time = this.targetDate - currentTime;
+                    const { days, hours, mins, secs } = this.getTimeComponents(time);
 
-            secsTimer.textContent = secs;
-            minsTimer.textContent = mins;
-            hoursTimer.textContent = hours;
-            daysTimer.textContent = days;
-        }, 1000);
+                    secsTimer.textContent = secs;
+                    minsTimer.textContent = mins;
+                    hoursTimer.textContent = hours;
+                    daysTimer.textContent = days;
+                } else {
+                    console.log('Внимание! Введенная дата наступила.');
+                    clearInterval(timerId)
+                }
+            }, 1000);
+        } else {
+            console.log('Ошибка! Введена неправильная дата (дата уже прошла).');
+        };
     }
 
     pad(value) {
@@ -43,4 +52,3 @@ const timer1 = new CountdownTimer({
 });
 
 timer1.start();
-
